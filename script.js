@@ -9,5 +9,6 @@ button.addEventListener("click", function()
 		let elem = document.createElement('li');
 	  	elem.innerHTML = text.value;
 		list.append(elem);
+		text.value="";
 	}
 });
