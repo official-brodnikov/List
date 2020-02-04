@@ -55,31 +55,31 @@ document.querySelector('ul').addEventListener("click", function(e) {
 });
 
 
-
-
-
+//сортировка списка
+//order - bool, true - по возрастанию, иначе по убыванию
+//index - bool, true - сортировка по индексам, иначе сортировка по строкам
 function Sort(order, index) {
 	var arrayElem = new Array();
 	var arrayIndex = new Array();
 	var listElem=document.getElementsByTagName('li');
-	
+	//копируем исходные данные в массивы
 	for(var k=0;k<listElem.length;k++) 
 	{
 		arrayElem[k]=listElem[k].children[1].text;
 		arrayIndex[k]=listElem[k].children[0].text;
 	}
-	
+	//сортируем массивы пузырьком в зависимости от index
 	if (index)
 		bubbleSort(arrayElem, arrayIndex);
 	else
 		bubbleSort(arrayIndex, arrayElem);
-	
+	//если по убыванию
 	if (!order)
 	{
 		arrayElem.reverse();
 		arrayIndex.reverse();
 	}
-	
+	//изменяем список
 	for(var k=0;k<arrayElem.length;k++) 
 	{
 		listElem[k].children[1].text=arrayElem[k];
@@ -87,6 +87,7 @@ function Sort(order, index) {
 	}
 }
 
+//сортировка пузырьком, сортируем по индексам или строкам, и "подтягиваем" второй массив, логика как у Dictionary(key, value)
 function bubbleSort(arrayElem, arrayIndex) {
     for (var k = 0, endI = arrayElem.length - 1; k < endI; k++) {
         for (var j = 0, endJ = endI - k; j < endJ; j++) {
@@ -101,7 +102,8 @@ function bubbleSort(arrayElem, arrayIndex) {
         }
     }
 }
-	
+
+//обрабатываем 	соответствующие кнопки
 document.getElementById("radioSortABC").addEventListener('click', function (event) {
     if (event.target && event.target.matches("input[type='radio']")) {
 		Sort(true, false);
